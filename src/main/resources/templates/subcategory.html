@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sub Category</title>
+</head>
+<body>
+<h1 th:text="${testcategory.getName()}"></h1>
+<div th:switch="${subcategories}">
+    <h3 th:case="null">No Categories</h3>
+    <div th:case="*">
+        <table>
+            <thead>
+            <tr th:each="subcategory : ${subcategories}">
+                <td>
+                    <a th:href="@{/category/sub/prod}" th:text="${subcategory.getName()}"></a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+</body>
+</html>

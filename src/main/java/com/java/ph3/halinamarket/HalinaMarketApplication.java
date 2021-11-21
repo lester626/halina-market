@@ -11,5 +11,4 @@ public class HalinaMarketApplication {
     public static void main(String[] args) {
         SpringApplication.run(HalinaMarketApplication.class, args);
     }
-
 }
