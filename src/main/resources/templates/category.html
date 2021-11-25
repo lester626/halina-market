@@ -5,19 +5,19 @@
     <title>Categories</title>
 </head>
 <body>
-<div th:switch="${categories}">
-    <h3 th:case="null">No Categories</h3>
-    <div th:case="*">
-        <table>
-            <thead>
-            <tr th:each="category : ${categories}">
-                <td>
-                    <a th:href="@{/category/sub/{id}(id=${category.getCategory_id()})}" th:text="${category.getName()}"></a>
-                </td>
-            </tr>
-            </thead>
-        </table>
+    <div th:switch="${categories}">
+        <h3 th:case="null">No Categories</h3>
+        <div th:case="*">
+            <table>
+                <thead>
+                <tr th:each="category : ${categories}">
+                    <td>
+                        <a th:text="${category}"></a>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+        </div>
     </div>
-</div>
 </body>
 </html>

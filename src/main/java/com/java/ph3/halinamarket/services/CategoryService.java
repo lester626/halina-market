@@ -8,12 +8,12 @@ import org.springframework.ui.ModelMap;
 
 import java.util.*;
 
-//@Service
+@Service
 public class CategoryService {
-//    @Autowired
-//    CategoryRepository categoryRepository;
-//
-//    public String listAllCategories(ModelMap modelMap) {
-//        return "index";
-//    }
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    public String listAllCategories(ModelMap modelMap) {
+        return "index";
+    }
 }

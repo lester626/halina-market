@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 import javax.persistence.*;
 
 @Data
@@ -91,7 +92,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public boolean isAcceptEmail() {
+    public boolean isAcceptEmail(boolean b) {
         return acceptEmail;
     }
 
@@ -99,7 +100,7 @@ public class User {
         this.acceptEmail = acceptEmail;
     }
 
-    public String getRole() {
+    public String getRole(User user) {
         return role;
     }
 
@@ -107,7 +108,7 @@ public class User {
         this.role = role;
     }
 
-    public UserAddress getUserByUserAddressId() {
+    public UserAddress getUserByUserAddressId(int i) {
         return userByUserAddressId;
     }
 
