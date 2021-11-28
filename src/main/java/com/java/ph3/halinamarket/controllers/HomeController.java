@@ -18,12 +18,12 @@ public class HomeController {
         return "home";
     }
 
-    @RequestMapping(value = "login")
+    @RequestMapping(value = "/login")
     public String login() {
         return "login";
     }
 
-    @RequestMapping(value = "signup")
+    @RequestMapping(value = "/signup")
     public String signUp() {
         return "signup";
     }
