@@ -14,22 +14,12 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("welcomeHome", "Your favorite neighborhood store");
-        return "home";
+//        model.addAttribute("welcomeHome", "Your favorite neighborhood store");
+        return "sample-home";
     }
 
-    @RequestMapping(value = "/login")
-    public String login() {
-        return "login";
-    }
-
-    @RequestMapping(value = "/signup")
-    public String signUp() {
-        return "signup";
-    }
-
-    @GetMapping("/admin")
-    public String admin() {
-        return "admin";
+    @GetMapping("/logout/page")
+    public String logout(){
+        return "logout_page";
     }
 }

@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>List of Products</title>
 </head>
 <body>
-  This is the List of Products
+<div th:switch="${products}">
+    <h3 th:case="null">No Categories</h3>
+    <div th:case="*">
+        <table>
+            <thead>
+            <tr th:each="product : ${products}">
+                <td>
+                    <img th:src="${product.getImageUrl()}" height="100" width="100">
+                    <a th:href="@{/product/details/{id}(id=${product.getProduct_id()})}" th:text="${product.getProductName()}"></a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
 </body>
 </html>

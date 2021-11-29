@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <form class="form-narrow form-horizontal" action="#" th:action="@{/login}" method="post">
+        <form class="form-narrow form-horizontal" th:action="@{/login}" method="post">
             <div th:if="${param.error}">
                 <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
             </div>

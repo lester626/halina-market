@@ -7,15 +7,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/halina")
 public class CategoryController {
     @Autowired
     CategoryRepository categoryRepository;
 
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+    @GetMapping("/category")
     public String getAllCategories(ModelMap modelMap) {
-        String[] categories = new String[] {"Beverages", "Bread/Bakery", "Canned/Jarred Goods", "Dairy"};
-        modelMap.addAttribute("categories", categories);
+        modelMap.addAttribute("categories", categoryRepository.findAll());
         return "category";
     }
 }

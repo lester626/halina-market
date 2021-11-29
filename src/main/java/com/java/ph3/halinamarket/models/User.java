@@ -3,9 +3,13 @@ package com.java.ph3.halinamarket.models;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -17,102 +21,45 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_id;
 
+    @NotNull
+    @Email
     @Column(name = "email")
     private String email;
 
+    @NotNull
+    @Length(min = 8)
     @Column(name = "user_password")
     private String password;
 
+    @NotNull
     @Column(name = "user_first_name")
     private String firstName;
 
+    @NotNull
     @Column(name = "user_last_name")
     private String lastName;
 
+    @AssertTrue
     @Column(name = "accept_email")
     private boolean acceptEmail;
 
+    @NotNull
     @Column(name = "user_role")
     private String role;
 
-    @ManyToOne
-    @JoinColumn(name = "user_address_id", referencedColumnName = "user_address_id", nullable = false)
-    private UserAddress userByUserAddressId;
+    @NotNull
+    @Column(name = "country")
+    private String country;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id=" + user_id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", acceptEmail=" + acceptEmail +
-                ", userByUserAddressId=" + userByUserAddressId +
-                '}';
-    }
+    @NotNull
+    @Column(name = "city")
+    private String city;
 
-    public int getUser_id() {
-        return user_id;
-    }
+    @NotNull
+    @Column(name = "street")
+    private String street;
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public boolean isAcceptEmail(boolean b) {
-        return acceptEmail;
-    }
-
-    public void setAcceptEmail(boolean acceptEmail) {
-        this.acceptEmail = acceptEmail;
-    }
-
-    public String getRole(User user) {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public UserAddress getUserByUserAddressId(int i) {
-        return userByUserAddressId;
-    }
-
-    public void setUserByUserAddressId(UserAddress userByUserAddressId) {
-        this.userByUserAddressId = userByUserAddressId;
-    }
+    @NotNull
+    @Column(name = "zip_code")
+    private int zip_code;
 }

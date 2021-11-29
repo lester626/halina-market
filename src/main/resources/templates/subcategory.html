@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Sub Category</title>
 </head>
 <body>
-<h1 th:text="${testcategory.getName()}"></h1>
+<h1 th:text="${category.getName()}"></h1>
 <div th:switch="${subcategories}">
-    <h3 th:case="null">No Categories</h3>
+    <h3 th:case="null">No Sub Categories</h3>
     <div th:case="*">
         <table>
             <thead>
             <tr th:each="subcategory : ${subcategories}">
                 <td>
-                    <a th:href="@{/category/sub/prod}" th:text="${subcategory.getName()}"></a>
+                    <a th:href="@{/category/prod/{id}(id=${subcategory.getSubcategory_id()})}" th:text="${subcategory.getName()}"></a>
                 </td>
             </tr>
             </thead>
