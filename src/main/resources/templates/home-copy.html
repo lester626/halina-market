@@ -12,8 +12,6 @@
 
 </head>
 <body>
-<p th:text="${welcomeHome}" class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase"></p>
-
 <!--Site wrapper-->
 <div class="wrapper">
 
@@ -21,7 +19,7 @@
     <nav class="py-2 bg-light border-bottom">
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
-                <p th:text="${welcomeHome}" class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase"></p>
+                <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Welcome to Halina Market</p>
             </ul>
             <ul class="nav">
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Cart</a></li>
@@ -54,27 +52,18 @@
     <section class="hero">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>All departments</span>
-                        </div>
-                        <div th:switch="${categories}">
-                            <h3 th:case="null" no categories>
-                            </h3>
-                            <div th:case="*">
-                                <table>
-                                    <thead>
-                                    <tr th:each="category : ${categories}">
-                                        <td>
-                                            <a th:text="${category.getName()}"></a>
-                                        </td>
-                                    </tr>
-                                    </thead>
-                                </table>
-                            </div>
-                        </div>
+                <div class="container" th:switch="${categories}">
+                    <h3 th:case="null">No Categories</h3>
+                    <div th:case="*">
+                        <table>
+                            <thead>
+                            <tr th:each="category : ${categories}">
+                                <td>
+                                    <a th:href="@{/category/sub/{id}(id=${category.getCategory_id()})}" th:text="${category.getName()}"></a>
+                                </td>
+                            </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
                 <div class="col-lg-9">
