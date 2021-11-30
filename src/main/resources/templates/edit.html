@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit</title>
+</head>
+<body>
+<form method="post" th:action="@{/product/edit/{id}}" th:object="${order}">
+    <h1 th:text="${order.getOrderLinesByProductId().getProductName()}"></h1>
+    <h2 th:text="${order.getOrderLinesByProductId().getPrice()}"></h2>
+    <div>
+        <div>
+            <input id="edit" name="edit" type="number" th:field="*{totalProducts}">
+            <button type="submit">Edit</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>
