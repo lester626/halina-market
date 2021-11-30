@@ -18,12 +18,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int product_id;
 
+    @Column(name = "product_name")
     private String productName;
 
+    @Column(name = "product_desc")
     private String productDesc;
 
+    @Column(name = "image_url")
     private String imageUrl;
 
+    @Column(name = "price")
     private float price;
 
     @ManyToOne

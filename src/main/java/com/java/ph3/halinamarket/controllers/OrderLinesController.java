@@ -31,6 +31,8 @@ public class OrderLinesController {
     @Autowired
     OrderLinesRepository orderLinesRepository;
 
+    private OrderLines orderLinesDetails;
+
     @GetMapping("/order/lines")
     public String displayAllOrderLines(ModelMap modelMap, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
@@ -38,5 +40,31 @@ public class OrderLinesController {
         List<OrderLines> orderLinesList = orderLinesRepository.findOrderLinesByOrderLinesByUserId(user);
         modelMap.addAttribute("orderLinesList", orderLinesList);
         return "order-lines";
+    }
+
+    @GetMapping("/product/edit/{id}")
+    public String editProduct(@PathVariable("id") int id, ModelMap modelMap) {
+        orderLinesDetails = orderLinesRepository.getById(id);
+        System.out.println(orderLinesDetails.getOrderLinesByProductId().getProductName());
+        System.out.println(orderLinesDetails.getTotalProducts());
+        modelMap.addAttribute("order", orderLinesDetails);
+        return "edit";
+    }
+
+    @PostMapping("/product/edit/{id}")
+    public String edittedProduct(@ModelAttribute("order") OrderLines orderLines) {
+        if(orderLines.getTotalProducts() <= 0) {
+            orderLinesRepository.delete(orderLinesDetails);
+        } else {
+            orderLinesDetails.setTotalProducts(orderLines.getTotalProducts());
+            orderLinesRepository.save(orderLinesDetails);
+        }
+        return "redirect:/order/lines";
+    }
+
+    @GetMapping("/product/delete/{id}")
+    public String deleteProduct(@PathVariable("id") int id){
+        orderLinesRepository.delete(orderLinesRepository.getById(id));
+        return "redirect:/order/lines";
     }
 }

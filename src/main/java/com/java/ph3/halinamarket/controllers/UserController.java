@@ -1,6 +1,8 @@
 package com.java.ph3.halinamarket.controllers;
 
+import com.java.ph3.halinamarket.models.DeliveryAddress;
 import com.java.ph3.halinamarket.models.User;
+import com.java.ph3.halinamarket.repository.DeliveryAddressRepository;
 import com.java.ph3.halinamarket.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -20,6 +22,11 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    DeliveryAddressRepository deliveryAddressRepository;
+
+    private User userDetails;
 
     @GetMapping("/login")
     public String login() {
@@ -42,7 +49,21 @@ public class UserController {
         String encrypted = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encrypted);
         user.setRole("ROLE_USER");
-        userRepository.save(user);
+        userDetails = user;
+        return "redirect:/signup/delivery/address";
+    }
+
+    @GetMapping("/signup/delivery/address")
+    public String viewDeliveryAddress(ModelMap modelMap) {
+        modelMap.addAttribute("deliveryAddress", new DeliveryAddress());
+        return "delivery-address";
+    }
+
+    @PostMapping("/signup/delivery/address")
+    public String addDeliveryAddress(@ModelAttribute("deliveryAddress") DeliveryAddress deliveryAddress) {
+        userRepository.save(userDetails);
+        deliveryAddress.setUserByUserId(userRepository.getUserByEmail(userDetails.getEmail()));
+        deliveryAddressRepository.save(deliveryAddress);
         return "redirect:/signup/success";
     }
 

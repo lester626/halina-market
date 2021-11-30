@@ -7,8 +7,7 @@
 <body>
 <div th:switch="${orderLinesList}">
     <div th:case="null">No Orders</div>
-    <div th:case="*">
-        <h1>Cart</h1>
+    <div th:case="*"><h1>Cart</h1>
         <table>
             <thead>
             <tr th:each="order : ${orderLinesList}">
@@ -22,6 +21,9 @@
                     <a> Total: </a>
                     <a th:text="${order.getProductPrice()}"></a>
                     <a>PHP</a>
+                    <a th:href="@{/product/edit/{id}(id=${order.getOrder_line_id()})}">Edit</a>
+                    <a th:href="@{/product/delete/{id}(id=${order.getOrder_line_id()})}">Delete</a>
+                    <br>
                 </td>
             </tr>
             </thead>

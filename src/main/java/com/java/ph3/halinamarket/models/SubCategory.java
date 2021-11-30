@@ -21,10 +21,6 @@ public class SubCategory {
     @Column(name = "subcategory_name")
     private String name;
 
-    public String getName() {
-        return this.name;
-    }
-
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
     private Category categoryByCategoryId;
