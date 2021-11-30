@@ -9,28 +9,30 @@
 <div th:switch="${orderLinesList}">
     <div th:case="null">No Orders</div>
     <div th:case="*">
-        <h1>Cart</h1>
-        <table>
-            <thead>
-            <tr th:each="order : ${orderLinesList}">
-                <td>
-                    <img th:src="${order.getOrderLinesByProductId().getImageUrl()}" height="50" width="50">
-                    <a th:text="${order.getOrderLinesByProductId().getProductName()}"></a>
-                    <a th:text="${order.getOrderLinesByProductId().getPrice()}"></a>
-                    <a>PHP</a>
-                    <a> x</a>
-                    <a th:text="${order.getTotalProducts()}"></a>
-                    <a> Total: </a>
-                    <a th:text="${order.getProductPrice()}"></a>
-                    <a>PHP</a>
-                    <a th:href="@{/product/edit/{id}(id=${order.getOrder_line_id()})}">Edit</a>
-                    <a th:href="@{/product/delete/{id}(id=${order.getOrder_line_id()})}">Delete</a>
-                    <br>
-                </td>
-            </tr>
-            </thead>
-        </table>
-        <button type="submit">Checkout</button>
+        <form method="post" th:action="@{/checkout/products/{id}}" th:object="">
+            <h1>Cart</h1>
+            <table>
+                <thead>
+                <tr th:each="order : ${orderLinesList}">
+                    <td>
+                        <img th:src="${order.getOrderLinesByProductId().getImageUrl()}" height="50" width="50">
+                        <a th:text="${order.getOrderLinesByProductId().getProductName()}"></a>
+                        <a th:text="${order.getOrderLinesByProductId().getPrice()}"></a>
+                        <a>PHP</a>
+                        <a> x</a>
+                        <a th:text="${order.getTotalProducts()}"></a>
+                        <a> Total: </a>
+                        <a th:text="${order.getProductPrice()}"></a>
+                        <a>PHP</a>
+                        <a th:href="@{/product/edit/{id}(id=${order.getOrder_line_id()})}">Edit</a>
+                        <a th:href="@{/product/delete/{id}(id=${order.getOrder_line_id()})}">Delete</a>
+                        <br>
+                    </td>
+                </tr>
+                </thead>
+            </table>
+            <button type="submit">Checkout</button>
+        </form>
     </div>
 </div>
 </body>

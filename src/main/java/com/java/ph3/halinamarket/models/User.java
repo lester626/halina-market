@@ -11,6 +11,8 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+import java.util.*;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -62,4 +64,10 @@ public class User {
     @NotNull
     @Column(name = "zip_code")
     private int zip_code;
+
+    @OneToMany(mappedBy = "userByUserId")
+    private List<DeliveryAddress> userByDeliveryAddressId;
+
+    @OneToMany(mappedBy = "orderByUserId")
+    private List<Order> userByOrderId;
 }

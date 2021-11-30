@@ -44,6 +44,11 @@ public class OrderLinesController {
         return "order-lines";
     }
 
+    @PostMapping("/order/lines")
+    public String checkoutOrders() {
+        return "orders";
+    }
+
     @GetMapping("/product/edit/{id}")
     public String editProduct(@PathVariable("id") int id, ModelMap modelMap) {
         orderLinesDetails = orderLinesRepository.getById(id);
