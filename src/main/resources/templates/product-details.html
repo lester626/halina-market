@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Lines</title>
+</head>
+<body>
+<form method="post" th:action="@{/product/details/{id}}" th:object="${orderLines}">
+    <div th:switch="${product}">
+        <div th:case="null">
+            No Product
+        </div>
+        <div class="container" th:case="*">
+            <img th:src="${product.getImageUrl()}" height="500" width="500">
+            <h1 th:text="${product.getProductName()}"></h1>
+            <h3 th:text="${product.getProductDesc()}"></h3>
+            <table>
+                <thead>
+                <tr>
+                    <td>
+                        <a th:text="${product.getPrice()}"></a>
+                        <a>PHP</a>
+                    </td>
+                    <td>
+                        <input id="totalProducts" name="totalProducts" type="number" th:field="*{totalProducts}">
+                    </td>
+                </tr>
+                </thead>
+            </table>
+            <button type="submit">Order</button>
+        </div>
+    </div>
+</form>
+</body>
+</html>

@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Order Lines</title>
+    <title>Cart Page</title>
 </head>
 <body>
-  <h1>This is the Order Lines Page</h1>
+<div class="container" th:switch="${orderLinesList}">
+    <div th:case="null">No Orders</div>
+    <div th:case="*">
+        <h1>Cart</h1>
+        <table>
+            <thead>
+            <tr th:each="order : ${orderLinesList}">
+                <td>
+                    <img th:src="${order.getOrderLinesByProductId().getImageUrl()}" height="50" width="50">
+                    <a th:text="${order.getOrderLinesByProductId().getProductName()}"></a>
+                    <a th:text="${order.getOrderLinesByProductId().getPrice()}"></a>
+                    <a>PHP</a>
+                    <a> x</a>
+                    <a th:text="${order.getTotalProducts()}"></a>
+                    <a> Total: </a>
+                    <a th:text="${order.getProductPrice()}"></a>
+                    <a>PHP</a>
+                </td>
+            </tr>
+            </thead>
+        </table>
+        <button type="submit">Checkout</button>
+    </div>
+</div>
 </body>
 </html>

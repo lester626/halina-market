@@ -23,5 +23,4 @@ public class HomeNotLoggedInController {
     public String signUp() {
         return "signUp";
     }
-
 }

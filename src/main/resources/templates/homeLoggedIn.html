@@ -31,19 +31,19 @@
             <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>
             <span class="fs-4">Halina Market</span>
         </a>
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0">
-            <input type="search" class="form-control" placeholder="Search for a product" aria-label="Search">
+        <form method="post" th:action="@{/home/loggedin}" th:object="${product}" class="col-12 col-lg-auto mb-3 mb-lg-0">
+            <input th:field="*{productName}" type="text" class="form-control" placeholder="Search for a product" aria-label="Search">
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
         </form>
-        <div class="text-end">
-            <button type="button" class="btn btn-primary">Search</button>
-        </div>
     </div>
 </header>
 <!--/Second Header-->
 
 <!--Side Navigation-->
 <div class="container" th:switch="${categories}">
-    <h3 th:case="null">No Categories</h3>
+<!--    <h3 th:case="null">No Categories</h3>-->
     <div th:case="*">
         <table>
             <thead>
@@ -58,22 +58,45 @@
 </div>
 <!--/Side Navigation-->
 
-<div class="container">
-        <h1 th:text="${testcategory.getName()}"></h1>
-        <div th:switch="${subcategories}">
-<!--            <h3 th:case="null">No Categories</h3>-->
-            <div th:case="*">
-                <table>
-                    <thead>
-                    <tr th:each="subcategory : ${subcategories}">
-                        <td>
-                            <a th:href="@{/category/sub/prod}" th:text="${subcategory.getName()}"></a>
-                        </td>
-                    </tr>
-                    </thead>
-                </table>
+<!-- Feature -->
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <img class="card-img" src="https://www.supermarketnews.com/sites/supermarketnews.com/files/styles/article_featured_retina/public/deliverystockart.jpg?itok=zxIk7wTp" alt="Card image">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Same Day Delivery</h1>
+            <p class="col-md-8 fs-4">Delivering happiness and needs</p>
+            <button class="btn btn-primary btn-lg active" type="button"><a href="/home/loggedin" class="nav-link link-light px-2">Shop Now</a></button>
+        </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light rounded-3">
+                <h2>Hassle-free shopping</h2>
+                <p>Order groceries at the comfort of your home.</p>
+                <button class="btn btn-outline-primary" type="button"><a href="/home/loggedin" class="nav-link link-dark px-2">Shop Now</a></button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>Fresh produce</h2>
+                <p>Fresh produce brought to your doorstep.</p>
+                <button class="btn btn-outline-primary" type="button"><a href="/home/loggedin/category/sub/12" th:href="@{/category/sub/12}" class="nav-link link-dark px-2">Shop Now</a></button>
             </div>
         </div>
     </div>
+</div>
+<!--/ Feature -->
+
+<!--Footer-->
+<div class="container">
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+            <p>&copy; <script>document.write(new Date().getFullYear());</script> Company, Inc. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+<!--/Footer-->
+
 </body>
 </html>

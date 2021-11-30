@@ -9,9 +9,13 @@
     <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-    <!--Top Header-->
+    <!--Header-->
     <nav class="py-2 bg-light border-bottom">
         <div class="container d-flex flex-wrap">
+            <a href="/home" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+                <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>
+                <span class="fs-4">Halina Market</span>
+            </a>
             <ul class="nav me-auto">
                 <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Your favorite neighborhood store</p>
             </ul>
@@ -21,41 +25,7 @@
             </ul>
         </div>
     </nav>
-    <!--/Top Header-->
-
-    <!--Second Header-->
-    <header class="py-3 mb-4 border-bottom">
-        <div class="container d-flex flex-wrap justify-content-center">
-            <a href="/home" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-                <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>
-                <span class="fs-4">Halina Market</span>
-            </a>
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0">
-                <input type="search" class="form-control" placeholder="Search for a product" aria-label="Search">
-            </form>
-            <div class="text-end">
-                <button type="button" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </header>
-    <!--/Second Header-->
-
-    <!--Side Navigation-->
-    <div class="container" th:switch="${categories}">
-        <h3 th:case="null">No Categories</h3>
-        <div th:case="*">
-            <table>
-                <thead>
-                <tr th:each="category : ${categories}">
-                    <td>
-                        <a th:href="@{/category/sub/{id}(id=${category.getCategory_id()})}" th:text="${category.getName()}"></a>
-                    </td>
-                </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
-    <!--/Side Navigation-->
+    <!--/Header-->
 
     <!-- Feature -->
     <div class="container py-4">
