@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Success</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title> Home Page - Not Logged In</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--CSS-->
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<h1>Sign up Successful</h1>
+<!-- Feature -->
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <img class="card-img" src="https://assets1.chainstoreage.com/styles/content_sm/s3/teaser_image_485896_0.jpg?itok=JTCjCCuX" alt="Card image">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Congratulations! 🎉</h1>
+            <p class="col-md-8 fs-4">Your account has been successfully created.</p>
+            <button class="btn btn-primary btn-lg active" type="button"><a href="/login" th:href="@{/login}" class="nav-link link-light px-2">Login</a></button>
+        </div>
+    </div>
+
+    <div class="row align-items-md-stretch">
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>Hassle-free shopping</h2>
+                <p>Order groceries at the comfort of your home.</p>
+                <button class="btn btn-outline-primary" type="button"><a href="/login" th:href="@{/login}" class="nav-link link-dark px-2">Shop Now</a></button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="h-100 p-5 bg-light border rounded-3">
+                <h2>Fresh produce</h2>
+                <p>Fresh produce brought to your doorstep.</p>
+                <button class="btn btn-outline-primary" type="button"><a href="/login" th:href="@{/login}" class="nav-link link-dark px-2">Shop Now</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/ Feature -->
 </body>
 </html>

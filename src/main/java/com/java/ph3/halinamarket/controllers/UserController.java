@@ -4,9 +4,11 @@ import com.java.ph3.halinamarket.models.DeliveryAddress;
 import com.java.ph3.halinamarket.models.User;
 import com.java.ph3.halinamarket.repository.DeliveryAddressRepository;
 import com.java.ph3.halinamarket.repository.UserRepository;
+import com.java.ph3.halinamarket.security_login.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -34,7 +36,7 @@ public class UserController {
         if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
             return "login";
         }
-        return "sample-home";
+        return "homeLoggedIn";
     }
 
     @GetMapping("/signup")
@@ -74,6 +76,12 @@ public class UserController {
 
     @GetMapping("/logout")
     public String logout(){
-        return "logout";
+        return "redirect:/home";
+    }
+
+    @GetMapping("/myProfile")
+    public String displayUserDetails(@AuthenticationPrincipal CustomUserDetails user, ModelMap modelMap) {
+        modelMap.addAttribute("user", user);
+        return "myProfile";
     }
 }

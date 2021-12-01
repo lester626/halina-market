@@ -9,6 +9,21 @@
     <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
+    <!--Header-->
+    <nav class="py-2 bg-light border-bottom">
+        <div class="container d-flex flex-wrap">
+            <a href="/home" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+                <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>
+                <span class="fs-4">Halina Market</span>
+            </a>
+            <span class="navbar-text">
+                    <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Your favorite neighborhood store</p>
+                </span>
+        </div>
+    </nav>
+    <!--/Header-->
+
+    <!--Login-->
     <div class="container">
         <form class="form-narrow form-horizontal" th:action="@{/login}" method="post">
             <div th:if="${param.error}">
@@ -50,5 +65,7 @@
             </fieldset>
         </form>
     </div>
+    <!--/Login-->
+
 </body>
 </html>
