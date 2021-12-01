@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Orders</title>
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<p>This the checkout</p>
+<div th:switch="${ordersCheckout}">
+  <div th:case="null">No Orders</div>
+  <div th:case="*">
+    <div>
+      <table>
+        <tr>
+          <td id="orders" th:each="order : ${ordersCheckout}" style="padding-right:20px">
+            <div>
+              <a style="font-weight: bold">ORDER ID: </a>
+              <a th:text="${order.getOrder_id()}"></a>
+            </div>
+            <div th:each="orderHold : ${order.getOrderHolders()}" style="list-style: none">
+              <div>
+                <img th:src="${orderHold.getOrderHolderByProductId().getImageUrl()}" height="50" width="50">
+                <div><a th:href="@{/product/details/{id}(id=${orderHold.getOrderHolderByProductId().getProduct_id()})}" th:text="${orderHold.getOrderHolderByProductId().getProductName()}"></a></div>
+                <div><a th:text="${orderHold.getOrderHolderByProductId().getPrice()}"></a></div>
+                <div>
+                  <a>x</a>
+                  <a th:text="${orderHold.getTotalProducts()}"></a>
+                </div>
+              </div>
+            </div>
+            <div>
+              <a style="font-weight: bold">TOTAL: </a>
+              <a th:text="${order.getTotalCost()}"></a>
+            </div>
+            <div>
+              <a style="font-weight: bold">STATUS: </a>
+              <a th:text="${order.getOrderStatus()}"></a>
+            </div>
+            <div>
+              <a style="font-weight: bold">ESTIMATED DELIVERY: </a>
+              <a th:text="${order.getOrderDate()}"></a>
+            </div>
+            <div>
+              <a style="font-weight: bold">DELIVERY ADDRESS: </a>
+              <a th:text="${order.getOrderByDeliveryAddressId().getStreet()}"></a>
+              <a th:text="${order.getOrderByDeliveryAddressId().getCity()}"></a>
+              <a th:text="${order.getOrderByDeliveryAddressId().getCountry()}"></a>
+              <a th:text="${order.getOrderByDeliveryAddressId().getZipCode()}"></a>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
 </body>
 </html>

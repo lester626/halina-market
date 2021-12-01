@@ -31,7 +31,6 @@ public class ProductsController {
     OrderLinesRepository orderLinesRepository;
 
     private Product productDetails;
-    private List<OrderLines> orderLinesList;
 
     @GetMapping("/category/prod/{id}")
     public String getAllProducts(@PathVariable("id") int id, ModelMap modelMap, Model model) {
@@ -67,12 +66,12 @@ public class ProductsController {
 
     @GetMapping("/search")
     public String getProducts(ModelMap modelMap) {
-        modelMap.addAttribute("product", new Product());
+        modelMap.addAttribute("product-search", new Product());
         return "search";
     }
 
     @PostMapping("/search")
-    public String resultProductByName(@ModelAttribute("product") final Product product, ModelMap modelMap) {
+    public String resultProductByName(@ModelAttribute("product-search") final Product product, ModelMap modelMap) {
         modelMap.addAttribute("products", productRepository.searchByNameLike(product.getProductName()));
         return "products";
     }

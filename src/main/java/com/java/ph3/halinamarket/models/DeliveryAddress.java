@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
@@ -31,4 +32,7 @@ public class DeliveryAddress {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "user_id", nullable = false)
     private User userByUserId;
+
+    @OneToMany(mappedBy = "orderByDeliveryAddressId")
+    private List<Order> orderByOrderId;
 }

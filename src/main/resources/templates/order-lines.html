@@ -8,7 +8,8 @@
 <div th:switch="${orderLinesList}">
     <div th:case="null">No Orders</div>
     <div th:case="*"><h1>Cart</h1>
-        <table>
+        <form method="post" th:action="@{/order/lines}">
+            <table>
             <thead>
             <tr th:each="order : ${orderLinesList}">
                 <td>
@@ -27,8 +28,10 @@
                 </td>
             </tr>
             </thead>
-        </table>
-        <button type="submit">Checkout</button>
+            </table>
+            <button type="submit">Checkout</button>
+
+        </form>
     </div>
 </div>
 </body>

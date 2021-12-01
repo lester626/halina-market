@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -14,23 +16,25 @@ import java.util.Date;
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
 
     @Column(name = "total_cost")
     private float totalCost;
 
     @Column(name = "order_date")
-    private Date orderDate;
+    private LocalDate orderDate;
 
     @Column(name = "order_status")
     private String orderStatus;
 
     @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User orderByUserId;
+
+    @ManyToOne
     @JoinColumn(name = "del_address_id", referencedColumnName = "del_address_id")
     private DeliveryAddress orderByDeliveryAddressId;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User orderByUserId;
+    @OneToMany(mappedBy = "orderHolderByOrderId")
+    List<OrderHolder> orderHolders;
 }

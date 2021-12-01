@@ -13,7 +13,6 @@ import javax.persistence.*;
 @Table(name = "order_line_holder")
 public class OrderHolder {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_holder_id;
 
     @Column(name = "total_products")

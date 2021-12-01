@@ -5,7 +5,7 @@
     <title>Orders</title>
 </head>
 <body>
-<form method="post" th:action="@{/search}" th:object="${product}">
+<form method="post" th:action="@{/search}" th:object="${product-search}">
     <label>
         Search:
         <input type="text" th:field="*{productName}">
