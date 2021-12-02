@@ -8,7 +8,7 @@
   <!--CSS-->
   <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
-<body>
+<body class="bg-light">
   <!--Top Header-->
   <nav class="py-2 bg-light border-bottom">
     <div class="container d-flex flex-wrap">
@@ -86,12 +86,14 @@
   <!--/User Profile-->
 
   <!--Footer-->
-  <div class="container">
-    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-      <div class="col-md-4 d-flex align-items-center">
-        <p>&copy; <script>document.write(new Date().getFullYear());</script> Company, Inc. All rights reserved.</p>
-      </div>
-    </footer>
+  <div class="fixed-bottom" >
+    <div class="container">
+      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+        <div class="col-md-4 d-flex align-items-center">
+          <p>&copy; <script>document.write(new Date().getFullYear());</script> Company, Inc. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
   </div>
   <!--/Footer-->
 </body>

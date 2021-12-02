@@ -36,8 +36,13 @@ public class OrderLinesController {
     @GetMapping("/order/lines")
     public String displayAllOrderLines(ModelMap modelMap, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
+        float total = 0;
         User user = userRepository.getUserByEmail(principal.getName());
         List<OrderLines> orderLinesList = orderLinesRepository.findOrderLinesByOrderLinesByUserId(user);
+        for(OrderLines orderLine: orderLinesList) {
+            total += (orderLine.getOrderLinesByProductId().getPrice() * orderLine.getTotalProducts());
+        }
+        modelMap.addAttribute("orderTotal", total);
         modelMap.addAttribute("orderLinesList", orderLinesList);
         return "order-lines";
     }
@@ -53,10 +58,13 @@ public class OrderLinesController {
 
     @PostMapping("/product/edit/{id}")
     public String edittedProduct(@ModelAttribute("order") OrderLines orderLines) {
+        float totalPrice = 0;
         if(orderLines.getTotalProducts() <= 0) {
             orderLinesRepository.delete(orderLinesDetails);
         } else {
             orderLinesDetails.setTotalProducts(orderLines.getTotalProducts());
+            totalPrice = orderLinesDetails.getOrderLinesByProductId().getPrice() * orderLinesDetails.getTotalProducts();
+            orderLinesDetails.setProductPrice(totalPrice);
             orderLinesRepository.save(orderLinesDetails);
         }
         return "redirect:/order/lines";

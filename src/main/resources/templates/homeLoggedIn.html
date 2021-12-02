@@ -16,9 +16,9 @@
       <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Your favorite neighborhood store</p>
     </ul>
     <ul class="nav">
-      <li class="nav-item"><a href="/order-lines" th:href="@{/signup}" class="nav-link link-dark px-2">My Cart</a></li>
-      <li class="nav-item"><a href="/myProfile" th:href="@{/myProfile}" class="nav-link link-dark px-2">My Profile</a></li>
-      <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link link-dark px-2">Logout</a></li>
+      <li class="nav-item"><a href="/order/lines" th:href="@{/order/lines}" class="nav-link link-dark px-2 fw-bold">My Cart</a></li>
+      <li class="nav-item"><a href="/myProfile" th:href="@{/myProfile}" class="nav-link link-dark px-2 fw-bold">My Profile</a></li>
+      <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link link-dark px-2 fw-bold">Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -31,11 +31,9 @@
       <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>
       <span class="fs-4">Halina Market</span>
     </a>
-    <form method="post" th:action="@{/home/loggedin}" th:object="${product}" class="col-12 col-lg-auto mb-3 mb-lg-0">
-      <input th:field="*{productName}" type="text" class="form-control" placeholder="Search" aria-label="Search">
-      <div class="text-end">
-        <button type="submit" class="btn btn-primary">Search</button>
-      </div>
+    <form method="post" th:action="@{/home/loggedin}" th:object="${product}" class="d-flex col-12 col-lg-auto mb-3 mb-lg-0">
+      <input th:field="*{productName}" type="text" class="form-control me-2" placeholder="Search..." aria-label="Search">
+      <button type="submit" class="btn btn-primary">🔍</button>
     </form>
   </div>
 </header>
@@ -71,17 +69,17 @@
 
   <div class="row align-items-md-stretch">
     <div class="col-md-6">
-      <div class="h-100 p-5 bg-light rounded-3">
+      <div class="h-100 p-5 bg-success rounded-3 text-light">
         <h2>Hassle-free shopping</h2>
         <p>Order groceries at the comfort of your home.</p>
-        <button class="btn btn-outline-primary" type="button"><a href="/home/loggedin" class="nav-link link-dark px-2">Shop Now</a></button>
+        <button class="btn btn-outline-light" type="button"><a href="/home/loggedin" class="nav-link link-light px-2">Shop Now</a></button>
       </div>
     </div>
     <div class="col-md-6">
-      <div class="h-100 p-5 bg-light border rounded-3">
+      <div class="h-100 p-5 bg-success border rounded-3 text-light">
         <h2>Fresh produce</h2>
         <p>Fresh produce brought to your doorstep.</p>
-        <button class="btn btn-outline-primary" type="button"><a href="/home/loggedin/category/sub/12" th:href="@{/category/sub/12}" class="nav-link link-dark px-2">Shop Now</a></button>
+        <button class="btn btn-outline-light" type="button"><a href="/home/loggedin/category/sub/12" th:href="@{/category/sub/12}" class="nav-link link-light px-2">Shop Now</a></button>
       </div>
     </div>
   </div>
