@@ -32,6 +32,7 @@
     <div class="container" th:switch="${orderLinesList}">
         <div th:case="null">No Orders</div>
         <div th:case="*"><h1>My Cart</h1></div>
+        <form method="post" th:action="@{/order/lines}">
             <table class="table table-bordered table-hover table-center">
                 <thead>
                 <tr>
@@ -80,6 +81,7 @@
             <br>
             <button class="btn btn-dark" type="submit">Checkout</button>
             <a th:text="${orderTotal}"></a>
+        </form>
         </div>
     </div>
     <!--/My Cart - Order Lines-->
