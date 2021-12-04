@@ -6,6 +6,7 @@ import com.java.ph3.halinamarket.models.SubCategory;
 import com.java.ph3.halinamarket.models.User;
 import com.java.ph3.halinamarket.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -34,11 +35,11 @@ public class ProductsController {
     private List<OrderLines> orderLinesList;
 
     @GetMapping("/category/prod/{id}")
-    public String getAllProducts(@PathVariable("id") int id, ModelMap modelMap, Model model) {
+    public String getAllProducts(@PathVariable("id") int id, ModelMap modelMap, Pageable pageable) {
         SubCategory subCategory = new SubCategory();
         subCategory = subCategoryRepository.getById(id);
-
         modelMap.addAttribute("products", productRepository.findProductsByProductBySubCategoryId(subCategory));
+        modelMap.addAttribute("productSearch", productRepository.findAll(pageable));
         return "products";
     }
 
