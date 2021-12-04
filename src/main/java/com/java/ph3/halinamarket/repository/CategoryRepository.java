@@ -12,4 +12,7 @@ import java.util.List;
 public interface CategoryRepository extends JpaRepository<Category, Integer> {
     @Query("SELECT s FROM Category s WHERE s.category_id = ?1")
     List<Category> getCategoriesByCategory_id(Category categoryId);
+
+    @Query("SELECT c FROM Category c WHERE c.name = ?1")
+    Category getCategoryByName(String name);
 }

@@ -38,7 +38,11 @@ public class ProductsController {
     public String getAllProducts(@PathVariable("id") int id, ModelMap modelMap, Pageable pageable) {
         SubCategory subCategory = new SubCategory();
         subCategory = subCategoryRepository.getById(id);
-        modelMap.addAttribute("products", productRepository.findProductsByProductBySubCategoryId(subCategory));
+        List<Product> products = productRepository.findProductsByProductBySubCategoryId(subCategory);
+        if(products.isEmpty()) {
+            products = null;
+        }
+        modelMap.addAttribute("products", products);
         modelMap.addAttribute("productSearch", productRepository.findAll(pageable));
         return "products";
     }
@@ -76,5 +80,20 @@ public class ProductsController {
     public String resultProductByName(@ModelAttribute("product-search") final Product product, ModelMap modelMap) {
         modelMap.addAttribute("products", productRepository.searchByNameLike(product.getProductName()));
         return "products";
+    }
+
+    @GetMapping("/product/add")
+    public String addingProduct(ModelMap modelMap) {
+        List<SubCategory> subCategoryList = subCategoryRepository.findAll();
+        modelMap.addAttribute("subCategoriesList", subCategoryList);
+        modelMap.addAttribute("addProduct", new Product());
+        return "addProducts";
+    }
+
+    @PostMapping("/product/add")
+    public String addProduct(@ModelAttribute("addProduct") Product addedProduct, HttpServletRequest request) {
+        addedProduct.setProductBySubCategoryId(subCategoryRepository.getSubCategoryByName(request.getParameter("sub-categories")));
+        productRepository.save(addedProduct);
+        return "redirect:/category/";
     }
 }

@@ -30,7 +30,12 @@
     <!--My Cart - Order Lines-->
     <br>
     <div class="container" th:switch="${orderLinesList}">
-        <div th:case="null">No Orders</div>
+        <div th:case="null">
+            <form method="post" th:action="@{/orders/view}">
+                No Orders
+                <button class="btn btn-lg btn-danger" type="submit">Checkout</button>
+            </form>
+        </div>
         <div th:case="*"><h1>My Cart</h1></div>
         <form method="post" th:action="@{/order/lines}">
             <table class="table table-bordered table-hover table-center">

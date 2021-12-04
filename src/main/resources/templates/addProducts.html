@@ -30,50 +30,62 @@
     <!--Manage Products-->
     <br>
     <div class="container">
-        <form class="form-narrow form-horizontal" method="post" th:action="@{/}" th:object="${}">
+        <form class="form-narrow form-horizontal" method="post" th:action="@{/product/add}" th:object="${addProduct}">
             <legend>Manage Store Products</legend>
-            <div class="form-group" th:classappend="${#fields.hasErrors('product_name')}? 'has-error'">
-                <label for="country" class="col-lg-2 control-label">Product</label>
+            <br>
+            <div>
+                <label for="sub-categories">Sub Category</label>
+                <select id="sub-categories" name="sub-categories">
+                    <div th:each="subcategory : ${subCategoriesList}">
+                        <option th:value="${subcategory.getName()}" th:text="${subcategory.getName()}"></option>
+                    </div>
+                </select>
+            </div>
+            <br>
+            <div class="form-group" th:classappend="${#fields.hasErrors('productName')}? 'has-error'">
+                <label for="name" class="col-lg-2 control-label">Product</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" id="country" placeholder="Name of the product" th:field="*{/}" required/>
-                    <span class="help-block" th:if="${#fields.hasErrors('product_name')}" th:errors="*{/}">Name too long</span>
+                    <input type="text" class="form-control" id="name" placeholder="Name of the product" th:field="*{productName}" required/>
+                    <span class="help-block" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Name too long</span>
                 </div>
             </div>
             <br>
-            <div class="form-group" th:classappend="${#fields.hasErrors('product_desc')}? 'has-error'">
+            <div class="form-group" th:classappend="${#fields.hasErrors('productDesc')}? 'has-error'">
                 <label class="col-lg-2 control-label">Product description</label>
                 <div class="col-lg-10">
-                    <textarea class="form-control" type="text" th:field="*{/}" required placeholder="Description of the product"/>
+                    <textarea class="form-control" type="text" th:field="*{productDesc}" required placeholder="Description of the product"/>
                     </textarea>
-                    <span class="help-block" th:if="${#fields.hasErrors('product_desc')}" th:errors="*{/}">Description too long</span>
+                    <span class="help-block" th:if="${#fields.hasErrors('productDesc')}" th:errors="*{productDesc}">Description too long</span>
                 </div>
             </div>
             <br>
-            <div class="form-group" th:classappend="${#fields.hasErrors('image_url')}? 'has-error'">
-                <label for="street" class="col-lg-2 control-label">Image URL</label>
+            <div class="form-group" th:classappend="${#fields.hasErrors('imageUrl')}? 'has-error'">
+                <label for="image_url" class="col-lg-2 control-label">Image URL</label>
                 <div class="col-lg-10">
-                    <input type="text" class="form-control" id="street" placeholder="Image URL starting with http" th:field="*{/}" required/>
-                    <span class="help-block" th:if="${#fields.hasErrors('image_url')}" th:errors="*{/}">Make sure URL starts with http</span>
+                    <input type="text" class="form-control" id="image_url" placeholder="Image URL starting with http" th:field="*{imageUrl}" required/>
+                    <span class="help-block" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}">Make sure URL starts with http</span>
                 </div>
             </div>
             <br>
-            <div class="form-group" th:classappend="${#fields.hasErrors('availability')}? 'has-error'">
-                <label for="zipCode" class="col-lg-2 control-label">Product Price</label>
+            <div class="form-group" th:classappend="${#fields.hasErrors('price')}? 'has-error'">
+                <label for="price" class="col-lg-2 control-label">Product Price</label>
                 <div class="col-lg-10">
-                    <input type="number" class="form-control" id="zipCode" placeholder="Price of the product" th:field="*{/}" required/>
-                    <span class="help-block" th:if="${#fields.hasErrors('availability')}" th:errors="*{/}">Just enter numerical value</span>
+                    <input type="number" class="form-control" id="price" placeholder="Price of the product" th:field="*{price}" required/>
+                    <span class="help-block" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Just enter numerical value</span>
                 </div>
             </div>
             <br>
-            <label>
-                <th:block th:text="${child.label}">Product available? </th:block>
-                <input type="hidden" th:name="${labelPath}" th:value="${child.label}"/>
-                <input type="checkbox" th:name="${valuePath}" th:checked="${child.value}"
-                       th:value="${child.value}"
-                       onclick="this.value = this.checked"/>
-            </label>
             <br>
-            <br>
+<!--            <br>-->
+<!--            <label>-->
+<!--                <th:block th:text="${child.label}">Product available? </th:block>-->
+<!--                <input type="hidden" th:name="${labelPath}" th:value="${child.label}"/>-->
+<!--                <input type="checkbox" th:name="${valuePath}" th:checked="${child.value}"-->
+<!--                       th:value="${child.value}"-->
+<!--                       onclick="this.value = this.checked"/>-->
+<!--            </label>-->
+<!--            <br>-->
+<!--            <br>-->
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <button type="submit" class="btn btn-primary">Add to Store</button>

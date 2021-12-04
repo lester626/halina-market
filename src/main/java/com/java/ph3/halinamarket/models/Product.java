@@ -31,13 +31,22 @@ public class Product {
     private float price;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "category_id", nullable = false)
-    private Category productByCategoryId;
-
-    @ManyToOne
     @JoinColumn(name = "subcategory_id", referencedColumnName = "subcategory_id", nullable = false)
     private SubCategory productBySubCategoryId;
 
     @OneToMany(mappedBy = "orderLinesByProductId")
     private List<OrderLines> orderLines;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Product)) return false;
+        Product product = (Product) o;
+        return getProduct_id() == product.getProduct_id() && Float.compare(product.getPrice(), getPrice()) == 0 && getProductName().equals(product.getProductName()) && getProductDesc().equals(product.getProductDesc()) && getImageUrl().equals(product.getImageUrl()) && getProductBySubCategoryId().equals(product.getProductBySubCategoryId()) && getOrderLines().equals(product.getOrderLines());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getProduct_id(), getProductName(), getProductDesc(), getImageUrl(), getPrice(), getProductBySubCategoryId(), getOrderLines());
+    }
 }
