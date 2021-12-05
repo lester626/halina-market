@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Edit</title>
+</head>
+<body>
+<div>
+    <img th:src="${productToEdit.getImageUrl()}" height="500" width="500">
+    <form method="post" th:action="@{/product/edit/{id}}" th:object="${productToEdit}">
+        <input type="text" th:field="*{productName}">
+        <input type="text" th:field="*{productDesc}">
+        <input type="text" th:field="*{imageUrl}">
+        <input type="number" th:field="*{price}">
+        <button type="submit">Edit</button>
+    </form>
+</div>
+</body>
+</html>

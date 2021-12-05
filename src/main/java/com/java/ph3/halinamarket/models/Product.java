@@ -15,7 +15,6 @@ import java.util.*;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int product_id;
 
     @Column(name = "product_name")

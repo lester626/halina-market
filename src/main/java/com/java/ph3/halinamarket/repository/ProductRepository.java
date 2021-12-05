@@ -22,4 +22,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     @Query("SELECT p FROM Product p WHERE p.productName =?1")
     Product getProductByProductName(String name);
+
+    @Query("SELECT p FROM Product p ORDER BY p.productName ASC")
+    List<Product> findProductsOrderByName();
 }

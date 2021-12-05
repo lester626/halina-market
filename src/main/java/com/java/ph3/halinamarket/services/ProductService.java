@@ -47,6 +47,7 @@ public class ProductService {
     private Category categoryProductSuccess = new Category();
     private SubCategory subCategoryProductSuccess = new SubCategory();
     private Product productAddSuccess = new Product();
+    private Product storeProductForEdit = new Product();
 
     public Paged<Product> getPage(int pageNumber, int size) {
         PageRequest pageRequest = PageRequest.of(pageNumber - 1, size, Sort.by(Sort.Direction.ASC, "id"));
@@ -120,5 +121,33 @@ public class ProductService {
         modelMap.addAttribute("subCategoryProduct", subCategoryProductSuccess);
         modelMap.addAttribute("productAdded", productAddSuccess);
         return "addProducts-success";
+    }
+
+    public String displayingAllProducts(ModelMap modelMap) {
+        modelMap.addAttribute("allProducts", productRepository.findProductsOrderByName());
+        return "products-admin";
+    }
+
+    public String edittingProduct(int id, ModelMap modelMap) {
+        storeProductForEdit = productRepository.getById(id);
+        modelMap.addAttribute("productToEdit", storeProductForEdit);
+        return "products-admin-edit";
+    }
+
+    @Transactional
+    public String productEditSuccessfully(Product product) {
+        storeProductForEdit.setProductName(product.getProductName());
+        storeProductForEdit.setProductDesc(product.getProductDesc());
+        storeProductForEdit.setImageUrl(product.getImageUrl());
+        storeProductForEdit.setPrice(product.getPrice());
+        productRepository.save(storeProductForEdit);
+        return "redirect:/product/display/all";
+    }
+
+    @Transactional
+    public String productDelete(int id) {
+        Product productToDelete = productRepository.getById(id);
+        productRepository.delete(productToDelete);
+        return "redirect:/product/display/all";
     }
 }
