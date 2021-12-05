@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -80,8 +82,12 @@ public class UserController {
     }
 
     @GetMapping("/myProfile")
-    public String displayUserDetails(@AuthenticationPrincipal CustomUserDetails user, ModelMap modelMap) {
+    public String displayUserDetails(@AuthenticationPrincipal CustomUserDetails user, ModelMap modelMap, HttpServletRequest request) {
         modelMap.addAttribute("user", user);
+        Principal principal = request.getUserPrincipal();
+        if (request.isUserInRole("ROLE_ADMIN")) {
+            return "myAdminProfile";
+        }
         return "myProfile";
     }
 }

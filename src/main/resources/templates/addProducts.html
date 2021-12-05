@@ -34,12 +34,14 @@
             <legend>Manage Store Products</legend>
             <br>
             <div>
+                <br>
                 <label for="sub-categories">Sub Category</label>
                 <select id="sub-categories" name="sub-categories">
                     <div th:each="subcategory : ${subCategoriesList}">
                         <option th:value="${subcategory.getName()}" th:text="${subcategory.getName()}"></option>
                     </div>
                 </select>
+                <br>
             </div>
             <br>
             <div class="form-group" th:classappend="${#fields.hasErrors('productName')}? 'has-error'">
@@ -71,24 +73,14 @@
                 <label for="price" class="col-lg-2 control-label">Product Price</label>
                 <div class="col-lg-10">
                     <input type="number" class="form-control" id="price" placeholder="Price of the product" th:field="*{price}" required/>
-                    <span class="help-block" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Just enter numerical value</span>
+                    <span class="help-block" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Numerical value only</span>
                 </div>
             </div>
             <br>
             <br>
-<!--            <br>-->
-<!--            <label>-->
-<!--                <th:block th:text="${child.label}">Product available? </th:block>-->
-<!--                <input type="hidden" th:name="${labelPath}" th:value="${child.label}"/>-->
-<!--                <input type="checkbox" th:name="${valuePath}" th:checked="${child.value}"-->
-<!--                       th:value="${child.value}"-->
-<!--                       onclick="this.value = this.checked"/>-->
-<!--            </label>-->
-<!--            <br>-->
-<!--            <br>-->
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <button type="submit" class="btn btn-primary">Add to Store</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
                 </div>
             </div>
         </form>

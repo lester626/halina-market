@@ -91,9 +91,12 @@ public class ProductsController {
     }
 
     @PostMapping("/product/add")
-    public String addProduct(@ModelAttribute("addProduct") Product addedProduct, HttpServletRequest request) {
-        addedProduct.setProductBySubCategoryId(subCategoryRepository.getSubCategoryByName(request.getParameter("sub-categories")));
+    public String addProduct(@ModelAttribute("addProduct") Product addedProduct, HttpServletRequest request, ModelMap modelMap) {
+        SubCategory subCategory = subCategoryRepository.getSubCategoryByName(request.getParameter("sub-categories"));
+        addedProduct.setProductBySubCategoryId(subCategory);
+        addedProduct.setAvailability(true);
         productRepository.save(addedProduct);
-        return "redirect:/category/";
+        modelMap.addAttribute("productAdded", productRepository.getProductByProductName(addedProduct.getProductName()));
+        return "addProducts-success";
     }
 }

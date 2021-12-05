@@ -43,6 +43,6 @@ public class CategoryController {
         defaultSubCategory.setName("Other " + category.getName());
         defaultSubCategory.setCategoryByCategoryId(categoryRepository.getCategoryByName(category.getName()));
         subCategoryRepository.save(defaultSubCategory);
-        return "category-added";
+        return "add-category-success";
     }
 }

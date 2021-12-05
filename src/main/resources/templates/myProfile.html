@@ -8,93 +8,96 @@
   <!--CSS-->
   <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
-<body class="bg-light">
-  <!--Top Header-->
-  <nav class="py-2 bg-light border-bottom">
-    <div class="container d-flex flex-wrap">
-      <ul class="nav me-auto">
-        <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Your favorite neighborhood store</p>
-      </ul>
-      <ul class="nav">
-        <li class="nav-item"><a href="/order/lines" th:href="@{/order/lines}" class="nav-link link-dark px-2 fw-bold">My Cart</a></li>
-        <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link link-dark px-2">Logout</a></li>
-      </ul>
-    </div>
-  </nav>
-  <!--/Top Header-->
+<body>
 
-  <!--Second Header-->
-  <header class="py-3 mb-4 border-bottom">
-    <div class="container d-flex flex-wrap justify-content-center">
-      <a href="/home/loggedin" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-        <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>
-        <span class="fs-4">Halina Market</span>
-      </a>
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0">
-        <input type="search" class="form-control" placeholder="Search for a product" aria-label="Search">
-      </form>
-      <div class="text-end">
-        <button type="button" class="btn btn-primary">Search</button>
-      </div>
-    </div>
-  </header>
-  <!--/Second Header-->
+<h1>This is the user profile</h1>
+<!--<body class="bg-light">-->
+<!--  &lt;!&ndash;Top Header&ndash;&gt;-->
+<!--  <nav class="py-2 bg-light border-bottom">-->
+<!--    <div class="container d-flex flex-wrap">-->
+<!--      <ul class="nav me-auto">-->
+<!--        <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Your favorite neighborhood store</p>-->
+<!--      </ul>-->
+<!--      <ul class="nav">-->
+<!--        <li class="nav-item"><a href="/order/lines" th:href="@{/order/lines}" class="nav-link link-dark px-2 fw-bold">My Cart</a></li>-->
+<!--        <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link link-dark px-2">Logout</a></li>-->
+<!--      </ul>-->
+<!--    </div>-->
+<!--  </nav>-->
+<!--  &lt;!&ndash;/Top Header&ndash;&gt;-->
 
-  <!--User Profile-->
-  <div class="container">
-    <div class="input-group">
-      <span class="input-group-text">First name</span>
-      <input type="text" aria-label="First name" class="form-control" type="text" th:value="${/}">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-text">Last name</span>
-      <input type="text" aria-label="Last Name" class="form-control" type="text" th:value="${/}">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-text">Email</span>
-      <input type="text" aria-label="Email" class="form-control" type="text" th:value="${user.getUsername()}">
-    </div>
-    <br>
-    <h6>Registered Address</h6>
-    <div class="input-group">
-      <span class="input-group-text">First name</span>
-      <input type="text" aria-label="First name" class="form-control" type="text" th:value="${/}">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-text">Street</span>
-      <input type="text" aria-label="Street" class="form-control" type="text" th:value="${/}">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-text">City</span>
-      <input type="text" aria-label="City" class="form-control" type="text" th:value="${/}">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-text">Country</span>
-      <input type="text" aria-label="Country" class="form-control" type="text" th:value="${/}">
-    </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-text">Zip code</span>
-      <input type="text" aria-label="Zip code" class="form-control" type="text" th:value="${/}">
-    </div>
-  </div>
-  <!--/User Profile-->
+<!--  &lt;!&ndash;Second Header&ndash;&gt;-->
+<!--  <header class="py-3 mb-4 border-bottom">-->
+<!--    <div class="container d-flex flex-wrap justify-content-center">-->
+<!--      <a href="/home/loggedin" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">-->
+<!--        <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>-->
+<!--        <span class="fs-4">Halina Market</span>-->
+<!--      </a>-->
+<!--      <form class="col-12 col-lg-auto mb-3 mb-lg-0">-->
+<!--        <input type="search" class="form-control" placeholder="Search for a product" aria-label="Search">-->
+<!--      </form>-->
+<!--      <div class="text-end">-->
+<!--        <button type="button" class="btn btn-primary">Search</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </header>-->
+<!--  &lt;!&ndash;/Second Header&ndash;&gt;-->
 
-  <!--Footer-->
-  <div class="fixed-bottom" >
-    <div class="container">
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <div class="col-md-4 d-flex align-items-center">
-          <p>&copy; <script>document.write(new Date().getFullYear());</script> Company, Inc. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
-  </div>
-  <!--/Footer-->
+<!--  &lt;!&ndash;User Profile&ndash;&gt;-->
+<!--  <div class="container">-->
+<!--    <div class="input-group">-->
+<!--      <span class="input-group-text">First name</span>-->
+<!--      <input type="text" aria-label="First name" class="form-control" type="text" th:value="${/}">-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div class="input-group">-->
+<!--      <span class="input-group-text">Last name</span>-->
+<!--      <input type="text" aria-label="Last Name" class="form-control" type="text" th:value="${/}">-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div class="input-group">-->
+<!--      <span class="input-group-text">Email</span>-->
+<!--      <input type="text" aria-label="Email" class="form-control" type="text" th:value="${user.getUsername()}">-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <h6>Registered Address</h6>-->
+<!--    <div class="input-group">-->
+<!--      <span class="input-group-text">First name</span>-->
+<!--      <input type="text" aria-label="First name" class="form-control" type="text" th:value="${/}">-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div class="input-group">-->
+<!--      <span class="input-group-text">Street</span>-->
+<!--      <input type="text" aria-label="Street" class="form-control" type="text" th:value="${/}">-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div class="input-group">-->
+<!--      <span class="input-group-text">City</span>-->
+<!--      <input type="text" aria-label="City" class="form-control" type="text" th:value="${/}">-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div class="input-group">-->
+<!--      <span class="input-group-text">Country</span>-->
+<!--      <input type="text" aria-label="Country" class="form-control" type="text" th:value="${/}">-->
+<!--    </div>-->
+<!--    <br>-->
+<!--    <div class="input-group">-->
+<!--      <span class="input-group-text">Zip code</span>-->
+<!--      <input type="text" aria-label="Zip code" class="form-control" type="text" th:value="${/}">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash;/User Profile&ndash;&gt;-->
+
+<!--  &lt;!&ndash;Footer&ndash;&gt;-->
+<!--  <div class="fixed-bottom" >-->
+<!--    <div class="container">-->
+<!--      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">-->
+<!--        <div class="col-md-4 d-flex align-items-center">-->
+<!--          <p>&copy; <script>document.write(new Date().getFullYear());</script> Company, Inc. All rights reserved.</p>-->
+<!--        </div>-->
+<!--      </footer>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash;/Footer&ndash;&gt;-->
 </body>
 </html>

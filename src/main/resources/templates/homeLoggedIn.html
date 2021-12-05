@@ -39,23 +39,6 @@
 </header>
 <!--/Second Header-->
 
-<!--Side Navigation-->
-<div class="container" th:switch="${categories}">
-  <!--    <h3 th:case="null">No Categories</h3>-->
-  <div th:case="*">
-    <table>
-      <thead>
-      <tr th:each="category : ${categories}">
-        <td>
-          <a th:href="@{/category/sub/{id}(id=${category.getCategory_id()})}" th:text="${category.getName()}"></a>
-        </td>
-      </tr>
-      </thead>
-    </table>
-  </div>
-</div>
-<!--/Side Navigation-->
-
 <!-- Feature -->
 <div class="container py-4">
   <div class="p-5 mb-4 bg-light rounded-3">
@@ -66,6 +49,24 @@
       <button class="btn btn-primary btn-lg active" type="button"><a href="/home/loggedin" class="nav-link link-light px-2">Shop Now</a></button>
     </div>
   </div>
+
+  <!--List of Categories-->
+  <div class="container" th:switch="${categories}">
+    <!--    <h3 th:case="null">No Categories</h3>-->
+    <div th:case="*">
+      <table>
+        <thead>
+        <tr th:each="category : ${categories}">
+          <td>
+            <img th:src="${category.getImageUrl()}" class="rounded" height="162" width="273">
+            <a th:href="@{/category/sub/{id}(id=${category.getCategory_id()})}" th:text="${category.getName()}"></a>
+          </td>
+        </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <!--/List of Categories-->
 
   <div class="row align-items-md-stretch">
     <div class="col-md-6">
