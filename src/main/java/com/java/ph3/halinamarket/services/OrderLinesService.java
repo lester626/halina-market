@@ -97,7 +97,7 @@ public class OrderLinesService {
     public String edittingProduct(int id, ModelMap modelMap) {
         orderLinesDetails = orderLinesRepository.getById(id);
         modelMap.addAttribute("order", orderLinesDetails);
-        return "edit";
+        return "order-lines-edit";
     }
 
     @Transactional
