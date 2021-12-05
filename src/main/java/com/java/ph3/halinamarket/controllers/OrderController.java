@@ -5,6 +5,7 @@ import com.java.ph3.halinamarket.models.User;
 import com.java.ph3.halinamarket.repository.OrderHolderRepository;
 import com.java.ph3.halinamarket.repository.OrderRepository;
 import com.java.ph3.halinamarket.repository.UserRepository;
+import com.java.ph3.halinamarket.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,32 +20,15 @@ import java.security.Principal;
 public class OrderController {
 
     @Autowired
-    OrderHolderRepository orderHolderRepository;
-
-    @Autowired
-    OrderRepository orderRepository;
-
-    @Autowired
-    UserRepository userRepository;
-
-    private User currentLoggedInUser = new User();
+    OrderService orderService;
 
     @GetMapping("/orders")
     public String checkoutOrders(ModelMap modelMap, HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        currentLoggedInUser = userRepository.getUserByEmail(principal.getName());
-        List<Order> allOrders = orderRepository.findOrdersByOrderByUserId(currentLoggedInUser);
-        if(allOrders.isEmpty()) {
-            allOrders = null;
-        }
-        modelMap.addAttribute("ordersCheckout", allOrders);
-        return "orders";
+        return orderService.viewAllCheckedOutOrders(modelMap, request);
     }
 
     @GetMapping("/orders/view")
     public String noOrders(ModelMap modelMap) {
-        List<Order> orders = null;
-        modelMap.addAttribute("ordersCheckout", orders);
-        return "orders";
+        return orderService.ifNoOrders(modelMap);
     }
 }

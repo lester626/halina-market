@@ -3,6 +3,7 @@ package com.java.ph3.halinamarket.controllers;
 import com.java.ph3.halinamarket.models.DeliveryAddress;
 import com.java.ph3.halinamarket.repository.DeliveryAddressRepository;
 import com.java.ph3.halinamarket.repository.UserRepository;
+import com.java.ph3.halinamarket.services.DeliveryAddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,12 +16,8 @@ import java.security.Principal;
 
 @Controller
 public class DeliveryAddressController {
-
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    DeliveryAddressRepository deliveryAddressRepository;
+    DeliveryAddressService deliveryAddressService;
 
     @GetMapping("/add/delivery")
     public String directoryToAddDeliveryAddress() {
@@ -29,15 +26,11 @@ public class DeliveryAddressController {
 
     @GetMapping("/add/delivery/address")
     public String viewDeliveryAddress(ModelMap modelMap) {
-        modelMap.addAttribute("deliveryAddress", new DeliveryAddress());
-        return "add-delivery";
+        return deliveryAddressService.viewDeliveryAddress(modelMap);
     }
 
     @PostMapping("/add/delivery/address")
     public String addDeliveryAddress(@ModelAttribute("deliveryAddress") DeliveryAddress deliveryAddress, HttpServletRequest request) {
-        Principal principal = request.getUserPrincipal();
-        deliveryAddress.setUserByUserId(userRepository.getUserByEmail(principal.getName()));
-        deliveryAddressRepository.save(deliveryAddress);
-        return "redirect:/signup/success";
+        return deliveryAddressService.addDeliveryAddress(deliveryAddress, request);
     }
 }

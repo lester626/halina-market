@@ -31,11 +31,11 @@
 <div class="container">
     <h2>Product successfully added</h2>
     <br>
-    <p><label>Category: </label> <strong th:text="${productAdded.getProductBySubCategoryId().getCategoryByCategoryId().getName()}"></strong></p>
-    <p><label>Subcategory: </label> <strong th:text="${productAdded.getProductBySubCategoryId().getName()}"></strong></p>
+    <p><label>Category: </label> <strong th:text="${categoryProduct.getName()}"></strong></p>
+    <p><label>Subcategory: </label> <strong th:text="${subCategoryProduct.getName()}"></strong></p>
     <p><label>Product: </label> <strong th:text="${productAdded.getProductName()}"></strong></p>
     <p><label>Product description: </label> <strong th:text="${productAdded.getProductDesc()}"></strong></p>
-    <p><label></label> <img th:src="${productAdded.getImageUrl()}"> </p>
+    <p><label></label> <img th:src="${productAdded.getImageUrl()}" height="500" width="500"> </p>
     <p><label>Price: </label> <strong th:text="${productAdded.getPrice()}"></strong></p>
 <!--    <p><label>Available: </label> <strong th:if="${productAdded.getAvailability()}" th:text="${/}">true</strong>-->
 <!--        <strong th:unless="*{availability}">false</strong></p>-->

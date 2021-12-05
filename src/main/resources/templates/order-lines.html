@@ -73,10 +73,10 @@
                         <a>PHP</a>
                     </td>
                     <td class="text-center align-middle">
-                        <a th:href="@{/product/edit/{id}(id=${order.getOrder_line_id()})}">Edit</a>
+                        <a th:href="@{/order/lines/product/edit/{id}(id=${order.getOrder_line_id()})}">Edit</a>
                     </td>
                     <td class="text-center align-middle">
-                        <a th:href="@{/product/delete/{id}(id=${order.getOrder_line_id()})}">Delete</a>
+                        <a th:href="@{/order/lines/product/delete/{id}(id=${order.getOrder_line_id()})}">Delete</a>
                     </td>
                     <br>
                     </td>

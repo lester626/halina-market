@@ -40,6 +40,12 @@
                     <span class="help-block" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name too long</span>
                 </div>
             </div>
+            <div class="form-group" th:classappend="${#fields.hasErrors('imageUrl')}? 'has-error'">
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="imageUrl" name="imageUrl" placeholder="Image URL of the category" th:field="*{imageUrl}" required/>
+                    <span class="help-block" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}">Image URL too long</span>
+                </div>
+            </div>
             <br>
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">

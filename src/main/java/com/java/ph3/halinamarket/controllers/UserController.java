@@ -4,7 +4,9 @@ import com.java.ph3.halinamarket.models.DeliveryAddress;
 import com.java.ph3.halinamarket.models.User;
 import com.java.ph3.halinamarket.repository.DeliveryAddressRepository;
 import com.java.ph3.halinamarket.repository.UserRepository;
+import com.java.ph3.halinamarket.security_login.AuthenticationSystem;
 import com.java.ph3.halinamarket.security_login.CustomUserDetails;
+import com.java.ph3.halinamarket.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,50 +27,31 @@ import java.security.Principal;
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    DeliveryAddressRepository deliveryAddressRepository;
-
-    private User userDetails;
+    UserService userService;
 
     @GetMapping("/login")
     public String login() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication == null || authentication instanceof AnonymousAuthenticationToken) {
-            return "login";
-        }
-        return "homeLoggedIn";
+        return userService.login();
     }
 
     @GetMapping("/signup")
     public String signUpNow(ModelMap modelMap){
-        modelMap.addAttribute("signUp", new User());
-        return "signup";
+        return userService.signingUp(modelMap);
     }
 
     @PostMapping("/signup")
     public String signup(@Valid @ModelAttribute("signup") User user){
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        String encrypted = bCryptPasswordEncoder.encode(user.getPassword());
-        user.setPassword(encrypted);
-        user.setRole("ROLE_USER");
-        userDetails = user;
-        return "redirect:/signup/delivery/address";
+        return userService.signsUp(user);
     }
 
     @GetMapping("/signup/delivery/address")
     public String viewDeliveryAddress(ModelMap modelMap) {
-        modelMap.addAttribute("deliveryAddress", new DeliveryAddress());
-        return "delivery-address";
+        return userService.signUpDeliveryAddress(modelMap);
     }
 
     @PostMapping("/signup/delivery/address")
     public String addDeliveryAddress(@ModelAttribute("deliveryAddress") DeliveryAddress deliveryAddress) {
-        userRepository.save(userDetails);
-        deliveryAddress.setUserByUserId(userRepository.getUserByEmail(userDetails.getEmail()));
-        deliveryAddressRepository.save(deliveryAddress);
-        return "redirect:/signup/success";
+        return userService.addingDeliverAddress(deliveryAddress);
     }
 
     @GetMapping("/signup/success")
@@ -83,11 +66,6 @@ public class UserController {
 
     @GetMapping("/myProfile")
     public String displayUserDetails(@AuthenticationPrincipal CustomUserDetails user, ModelMap modelMap, HttpServletRequest request) {
-        modelMap.addAttribute("user", user);
-        Principal principal = request.getUserPrincipal();
-        if (request.isUserInRole("ROLE_ADMIN")) {
-            return "myAdminProfile";
-        }
-        return "myProfile";
+        return userService.toDisplayUserDetails(user, modelMap, request);
     }
 }

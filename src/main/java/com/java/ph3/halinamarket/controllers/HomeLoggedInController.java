@@ -4,6 +4,7 @@ import com.java.ph3.halinamarket.models.Product;
 import com.java.ph3.halinamarket.repository.CategoryRepository;
 import com.java.ph3.halinamarket.repository.ProductRepository;
 import com.java.ph3.halinamarket.security_login.AuthenticationSystem;
+import com.java.ph3.halinamarket.services.HomeLoggedInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,21 +17,15 @@ import java.security.Principal;
 public class HomeLoggedInController {
 
     @Autowired
-    CategoryRepository categoryRepository;
-
-    @Autowired
-    ProductRepository productRepository;
+    HomeLoggedInService homeLoggedInService;
 
     @GetMapping("/home/loggedin")
     public String home(ModelMap modelMap) {
-        modelMap.addAttribute("categories", categoryRepository.findAll());
-        modelMap.addAttribute("product", new Product());
-        return "homeLoggedIn";
+        return homeLoggedInService.home(modelMap);
     }
 
     @PostMapping("/home/loggedin")
     public String resultProductByName(@ModelAttribute("product") final Product product, ModelMap modelMap) {
-        modelMap.addAttribute("products", productRepository.searchByNameLike(product.getProductName()));
-        return "products";
+        return homeLoggedInService.homeWithProducts(product, modelMap);
     }
 }
