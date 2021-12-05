@@ -32,130 +32,46 @@
 <div class="container" th:switch="${categories}">
     <h3 th:case="null">No Categories</h3>
     <div th:case="*">
-        <table>
+        <table class="table table-bordered table-hover table-center">
             <thead>
+            <tr>
+                <th class="text-center align-middle" scope="col">Image</th>
+                <th class="text-center align-middle" scope="col">Category</th>
+            </tr>
+            </thead>
+            <tbody>
             <tr th:each="category : ${categories}">
-                <td>
-                    <img th:src="${category.getImageUrl()}" height="500" width="500">
+                <td class="text-center align-middle">
+                    <img th:src="${category.getImageUrl()}" height="50" width="50">
+                </td>
+                <td class="text-center align-middle">
                     <a th:href="@{/category/sub/{id}(id=${category.getCategory_id()})}" th:text="${category.getName()}"></a>
                 </td>
             </tr>
-            </thead>
+            </tbody>
         </table>
     </div>
 </div>
 <!--/Category-->
 
-
-
-<div class="container" th:switch="${categories}">
-    <h3 th:case="null">No Categories</h3>
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card text-md-center">
-                <img th:src="${category.getImageUrl()}" height="162" width="273">
-                <a th:href="@{/category/sub/{id}(id=${category.getCategory_id()})}" th:text="${category.getName()}"></a>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="/images/02-Beverages.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Beverages</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="/images/03-CannedGoods.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Canned Goods</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="/images/04-Cleaning.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Cleaning</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="/images/05-Dairy.jpeg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Dairy</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Dry / Baking Goods</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Frozen Food</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Meat</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Others</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Paper Goods</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Personal Care</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Produce</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+<!--&lt;!&ndash;Category&ndash;&gt;-->
+<!--<br>-->
+<!--<div class="container" th:switch="${categories}">-->
+<!--    <h3 th:case="null">No Categories</h3>-->
+<!--    <div th:case="*">-->
+<!--        <table>-->
+<!--            <thead>-->
+<!--            <tr th:each="category : ${categories}">-->
+<!--                <td>-->
+<!--                    <img th:src="${category.getImageUrl()}" height="500" width="500">-->
+<!--                    <a th:href="@{/category/sub/{id}(id=${category.getCategory_id()})}" th:text="${category.getName()}"></a>-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--        </table>-->
+<!--    </div>-->
+<!--</div>-->
+<!--&lt;!&ndash;/Category&ndash;&gt;-->
 
 <!--Footer-->
 <div class="container">
