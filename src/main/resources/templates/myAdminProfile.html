@@ -10,83 +10,83 @@
 </head>
 <body class="bg-light">
 
-<h1>This is the admin profile</h1>
+<!--Admin Header-->
+<nav class="py-2 bg-light border-bottom" style="background-color: #b7c9e2">
+    <div class="container d-flex flex-wrap">
+        <a href="/home/loggedin" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+            <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>
+            <span class="fs-4">Halina Market</span>
+        </a>
+        <ul class="nav me-auto">
+            <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Your favorite neighborhood store</p>
+        </ul>
+        <ul class="nav"><li class="nav-item"><a href="/myProfile" th:href="@{/myProfile}" class="nav-link link-dark px-2 fw-bold">My Profile</a></li>
+            <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link link-dark px-2 fw-bold">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<!--/Admin Header-->
 
-<!--&lt;!&ndash;Admin Header&ndash;&gt;-->
-<!--<nav class="py-2 bg-light border-bottom" style="background-color: #b7c9e2">-->
-<!--    <div class="container d-flex flex-wrap">-->
-<!--        <a href="/home/loggedin" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">-->
-<!--            <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>-->
-<!--            <span class="fs-4">Halina Market</span>-->
-<!--        </a>-->
-<!--        <ul class="nav me-auto">-->
-<!--            <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Your favorite neighborhood store</p>-->
-<!--        </ul>-->
-<!--        <ul class="nav"><li class="nav-item"><a href="/myProfile" th:href="@{/myProfile}" class="nav-link link-dark px-2 fw-bold">My Profile</a></li>-->
-<!--            <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link link-dark px-2 fw-bold">Logout</a></li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</nav>-->
-<!--&lt;!&ndash;/Admin Header&ndash;&gt;-->
-
-<!--&lt;!&ndash;Admin - Edit & Delete&ndash;&gt;-->
-<!--<br>-->
-<!--<div class="container" th:switch="${/}">-->
-<!--    <div th:case="*"><h1>Manage products</h1></div>-->
-<!--    <form method="post" th:action="@{/}">-->
-<!--        <table class="table table-bordered table-hover table-center">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th class="text-center align-middle" scope="col">ID</th>-->
-<!--                <th class="text-center align-middle" scope="col">Image</th>-->
-<!--                <th class="text-center align-middle" scope="col">Product</th>-->
-<!--                <th class="text-center align-middle" scope="col">Description</th>-->
-<!--                <th class="text-center align-middle" scope="col">Price</th>-->
-<!--                <th class="text-center align-middle" scope="col">Available</th>-->
-<!--                <th class="text-center align-middle" scope="col">Edit</th>-->
-<!--                <th class="text-center align-middle" scope="col">Remove</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
+<!--Admin - Edit & Delete-->
+<br>
+<h2 class="text-end container text-success">You are logged in as Store Admin</h2>
+<br>
+<div class="container" th:switch="${displayingAllProducts}">
+    <div th:case="*"><h1>Manage products</h1></div>
+    <form method="post" th:action="@{/product/display/all}">
+        <table class="table table-bordered table-hover table-center">
+            <thead>
+            <tr>
+                <th class="text-center align-middle" scope="col">ID</th>
+                <th class="text-center align-middle" scope="col">Image</th>
+                <th class="text-center align-middle" scope="col">Product</th>
+                <th class="text-center align-middle" scope="col">Description</th>
+                <th class="text-center align-middle" scope="col">Price</th>
+                <th class="text-center align-middle" scope="col">Available</th>
+                <th class="text-center align-middle" scope="col">Edit</th>
+                <th class="text-center align-middle" scope="col">Remove</th>
+            </tr>
+            </thead>
+            <tbody>
 <!--            <tr th:if="${/.empty}">-->
 <!--                <td colspan="4">Manage products</td>-->
 <!--            </tr>-->
-<!--            <tr th:each="order : ${/}">-->
-<!--                <td class="text-center align-middle">-->
-<!--                    <a th:text="${/()./()}"></a>-->
-<!--                </td>-->
-<!--                <td class="text-center align-middle">-->
-<!--                    <img th:src="${/()./()}" height="50" width="50">-->
-<!--                </td>-->
-<!--                <td class="text-center align-middle">-->
-<!--                    <a th:text="${/()./()}"></a>-->
-<!--                </td>-->
-<!--                <td class="text-center align-middle">-->
-<!--                    <a th:text="${/()./()}"></a>-->
-<!--                </td>-->
-<!--                <td class="text-center align-middle">-->
-<!--                    <a th:text="${/()}"></a>-->
-<!--                    <a>PHP</a>-->
-<!--                </td>-->
-<!--                <td class="text-center align-middle">-->
-<!--                    <a th:text="${()}"></a>-->
-<!--                </td>-->
-<!--                <td class="text-center align-middle">-->
-<!--                    <a th:href="@{/}(id=${/()})}">Edit</a>-->
-<!--                </td>-->
-<!--                <td class="text-center align-middle">-->
-<!--                    <a th:href="@{/}(id=${/()})}">Delete</a>-->
-<!--                </td>-->
-<!--                <br>-->
-<!--                </td>-->
-<!--            </tr>-->
-<!--            </tbody>-->
-<!--        </table>-->
-<!--        <br>-->
-<!--    </form>-->
-<!--</div>-->
-<!--</div>-->
-<!--&lt;!&ndash;/Admin - Edit & Delete&ndash;&gt;-->
+            <tr th:each="order : ${displayingAllProducts}">
+                <td class="text-center align-middle">
+                    <a th:text="${allProducts.getProductDetailsById().getProduct_id()}"></a>
+                </td>
+                <td class="text-center align-middle">
+                    <a th:text="${allProducts.getProductDetailsById().getImageUrl()}"></a>
+                </td>
+                <td class="text-center align-middle">
+                    <img th:src="${allProducts.getProductDetailsById().getProductName()}" height="50" width="50">
+                </td>
+                <td class="text-center align-middle">
+                    <a th:text="${allProducts.getProductDetailsById().getProductDesc()}"></a>
+                </td>
+                <td class="text-center align-middle">
+                    <a th:text="${allProducts.getProductDetailsById().getPrice()}"></a>
+                    <a>PHP</a>
+                </td>
+                <td class="text-center align-middle">
+                    <a th:text="${allProducts.getProductDetailsById().isAvailability()}"></a>
+                </td>
+                <td class="text-center align-middle">
+                    <a th:href="@{/product/edit/{id}}(id=${products.product_id()})}">Edit</a>
+                </td>
+                <td class="text-center align-middle">
+                    <a th:href="@{/product/delete/{id}}(id=${products.product_id()})}">Delete</a>
+                </td>
+                <br>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+    </form>
+</div>
+</div>
+<!--/Admin - Edit & Delete-->
 
 <!--&lt;!&ndash;Pagination of Admin&ndash;&gt;-->
 <!--<nav class="container">-->

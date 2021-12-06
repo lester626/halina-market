@@ -32,6 +32,10 @@ public class User {
     @Column(name = "user_password")
     private String password;
 
+    public String getFirstName() {
+        return firstName;
+    }
+
     @NotNull
     @Column(name = "user_first_name")
     private String firstName;
