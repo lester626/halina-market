@@ -148,6 +148,6 @@ public class ProductService {
     public String productDelete(int id) {
         Product productToDelete = productRepository.getById(id);
         productRepository.delete(productToDelete);
-        return "redirect:/product/display/all";
+        return "redirect:/myProfile";
     }
 }
