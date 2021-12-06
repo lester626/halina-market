@@ -2,18 +2,89 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Product Edit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Edit Products - Admin Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--CSS-->
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
-<body>
-<div>
-    <img th:src="${productToEdit.getImageUrl()}" height="500" width="500">
-    <form method="post" th:action="@{/product/edit/{id}}" th:object="${productToEdit}">
-        <input type="text" th:field="*{productName}">
-        <input type="text" th:field="*{productDesc}">
-        <input type="text" th:field="*{imageUrl}">
-        <input type="number" th:field="*{price}">
-        <button type="submit">Edit</button>
+<body class="bg-light">
+<!--Admin Header-->
+<nav class="py-2 bg-light border-bottom" style="background-color: #b7c9e2">
+    <div class="container d-flex flex-wrap">
+        <a href="/home/loggedin" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+            <svg class="icon me-2" width="40" height="32"><img src="https://img.icons8.com/fluency/48/000000/grocery-store.png"/></svg>
+            <span class="fs-4">Halina Market</span>
+        </a>
+        <ul class="nav me-auto">
+            <p class="fw-bold d-flex align-items-center mb-3 mb-md-0 me-md-auto text-primary text-decoration-none text-uppercase">Your favorite neighborhood store</p>
+        </ul>
+        <ul class="nav"><li class="nav-item"><a href="/myProfile" th:href="@{/myProfile}" class="nav-link link-dark px-2 fw-bold">My Profile</a></li>
+            <li class="nav-item"><a href="/logout" th:href="@{/logout}" class="nav-link link-dark px-2 fw-bold">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<!--/Admin Header-->
+
+<!--Manage Products-->
+<br>
+<div class="container">
+    <form class="form-narrow form-horizontal" method="post" th:action="@{/product/edit/{id}}" th:object="${productToEdit}">
+        <legend>Edit Store Products</legend>
+        <br>
+        <div class="form-group" th:classappend="${#fields.hasErrors('productName')}? 'has-error'">
+            <label for="name" class="col-lg-2 control-label">Product</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="name" placeholder="Name of the product" th:field="*{productName}" required/>
+                <span class="help-block" th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}">Name too long</span>
+            </div>
+        </div>
+        <br>
+        <div class="form-group" th:classappend="${#fields.hasErrors('productDesc')}? 'has-error'">
+            <label class="col-lg-2 control-label">Product description</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" type="text" th:field="*{productDesc}" required placeholder="Description of the product"/>
+                </textarea>
+                <span class="help-block" th:if="${#fields.hasErrors('productDesc')}" th:errors="*{productDesc}">Description too long</span>
+            </div>
+        </div>
+        <br>
+        <div class="form-group" th:classappend="${#fields.hasErrors('imageUrl')}? 'has-error'">
+            <label for="image_url" class="col-lg-2 control-label">Image URL</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="image_url" placeholder="Image URL starting with http" th:field="*{imageUrl}" required/>
+                <span class="help-block" th:if="${#fields.hasErrors('imageUrl')}" th:errors="*{imageUrl}">Make sure URL starts with http</span>
+            </div>
+        </div>
+        <br>
+        <div class="form-group" th:classappend="${#fields.hasErrors('price')}? 'has-error'">
+            <label for="price" class="col-lg-2 control-label">Product Price</label>
+            <div class="col-lg-10">
+                <input type="number" class="form-control" id="price" placeholder="Price of the product" th:field="*{price}" required/>
+                <span class="help-block" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Numerical value only</span>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </div>
     </form>
 </div>
+<!--/Manage Products-->
+
+<!--Footer-->
+<div class="fixed-bottom" >
+    <div class="container">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+            <div class="col-md-4 d-flex align-items-center">
+                <p>&copy; <script>document.write(new Date().getFullYear());</script> Company, Inc. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</div>
+<!--/Footer-->
 </body>
 </html>

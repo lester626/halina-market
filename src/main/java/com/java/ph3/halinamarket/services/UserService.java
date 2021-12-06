@@ -3,6 +3,7 @@ package com.java.ph3.halinamarket.services;
 import com.java.ph3.halinamarket.models.DeliveryAddress;
 import com.java.ph3.halinamarket.models.User;
 import com.java.ph3.halinamarket.repository.DeliveryAddressRepository;
+import com.java.ph3.halinamarket.repository.ProductRepository;
 import com.java.ph3.halinamarket.repository.UserRepository;
 import com.java.ph3.halinamarket.security_login.AuthenticationSystem;
 import com.java.ph3.halinamarket.security_login.CustomUserDetails;
@@ -26,6 +27,9 @@ public class UserService {
 
     @Autowired
     DeliveryAddressRepository deliveryAddressRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     private User userDetails;
 
@@ -69,6 +73,7 @@ public class UserService {
     public String toDisplayUserDetails(CustomUserDetails user, ModelMap modelMap, HttpServletRequest request) {modelMap.addAttribute("user", user);
         Principal principal = request.getUserPrincipal();
         if (request.isUserInRole("ROLE_ADMIN")) {
+            modelMap.addAttribute("allProducts", productRepository.findProductsOrderByName());
             return "myAdminProfile";
         }
         return "myProfile";

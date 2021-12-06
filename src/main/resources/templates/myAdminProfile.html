@@ -31,7 +31,7 @@
 <br>
 <h2 class="text-end container text-success">You are logged in as Store Admin</h2>
 <br>
-<div class="container" th:switch="${displayingAllProducts}">
+<div class="container" th:switch="${allProducts}">
     <div th:case="*"><h1>Manage products</h1></div>
     <form method="post" th:action="@{/product/display/all}">
         <table class="table table-bordered table-hover table-center">
@@ -42,7 +42,7 @@
                 <th class="text-center align-middle" scope="col">Product</th>
                 <th class="text-center align-middle" scope="col">Description</th>
                 <th class="text-center align-middle" scope="col">Price</th>
-                <th class="text-center align-middle" scope="col">Available</th>
+<!--                <th class="text-center align-middle" scope="col">Available</th>-->
                 <th class="text-center align-middle" scope="col">Edit</th>
                 <th class="text-center align-middle" scope="col">Remove</th>
             </tr>
@@ -51,31 +51,31 @@
 <!--            <tr th:if="${/.empty}">-->
 <!--                <td colspan="4">Manage products</td>-->
 <!--            </tr>-->
-            <tr th:each="order : ${displayingAllProducts}">
+            <tr th:each="product : ${allProducts}">
                 <td class="text-center align-middle">
-                    <a th:text="${allProducts.getProductDetailsById().getProduct_id()}"></a>
+                    <a th:text="${product.getProduct_id()}"></a>
                 </td>
                 <td class="text-center align-middle">
-                    <a th:text="${allProducts.getProductDetailsById().getImageUrl()}"></a>
+                    <img th:src="${product.getImageUrl()}" height="50" width="50">
                 </td>
                 <td class="text-center align-middle">
-                    <img th:src="${allProducts.getProductDetailsById().getProductName()}" height="50" width="50">
+                    <a th:text="${product.getProductName()}"></a>
                 </td>
                 <td class="text-center align-middle">
-                    <a th:text="${allProducts.getProductDetailsById().getProductDesc()}"></a>
+                    <a th:text="${product.getProductDesc()}"></a>
                 </td>
                 <td class="text-center align-middle">
-                    <a th:text="${allProducts.getProductDetailsById().getPrice()}"></a>
+                    <a th:text="${product.getPrice()}"></a>
                     <a>PHP</a>
                 </td>
+<!--                <td class="text-center align-middle">-->
+<!--                    <a th:text="${product.getAvailability()}"></a>-->
+<!--                </td>-->
                 <td class="text-center align-middle">
-                    <a th:text="${allProducts.getProductDetailsById().isAvailability()}"></a>
+                    <a th:href="@{/product/edit/{id}(id=${product.getProduct_id()})}">Edit</a>
                 </td>
                 <td class="text-center align-middle">
-                    <a th:href="@{/product/edit/{id}}(id=${products.product_id()})}">Edit</a>
-                </td>
-                <td class="text-center align-middle">
-                    <a th:href="@{/product/delete/{id}}(id=${products.product_id()})}">Delete</a>
+                    <a th:href="@{/product/delete/{id}(id=${product.getProduct_id()})}">Delete</a>
                 </td>
                 <br>
                 </td>

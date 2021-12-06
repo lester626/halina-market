@@ -124,8 +124,8 @@ public class ProductService {
     }
 
     public String displayingAllProducts(ModelMap modelMap) {
-        modelMap.addAttribute("allProducts", productRepository.findProductsOrderByName());
-        return "products-admin";
+//        modelMap.addAttribute("allProducts", productRepository.findProductsOrderByName());
+        return "myAdminProfile";
     }
 
     public String edittingProduct(int id, ModelMap modelMap) {
@@ -141,7 +141,7 @@ public class ProductService {
         storeProductForEdit.setImageUrl(product.getImageUrl());
         storeProductForEdit.setPrice(product.getPrice());
         productRepository.save(storeProductForEdit);
-        return "redirect:/product/display/all";
+        return "redirect:/myProfile";
     }
 
     @Transactional
